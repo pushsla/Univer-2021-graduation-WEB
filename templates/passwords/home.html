@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  Hi {{ user.username }}!
+    Choose your action:
+
+    <form action="{% url 'wallet-view' %}" method="post">
+        {% csrf_token %}
+        Open any wallet:
+        {{ wallet_selection_form }}
+        <button type="submit">Open</button>
+    </form>
+
+    Create new wallet: <a href="{% url 'wallet-create' %}">Create!</a>
+  <p><a href="{% url 'logout' %}">Log Out</a></p>
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">Log In</a> |
+  <a href="{% url 'signup' %}">Sign Up</a>
+{% endif %}
+{% endblock %}

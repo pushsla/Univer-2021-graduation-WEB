@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}New Wallet{% endblock %}
+
+{% block content %}
+<h2>Passwords of wallet</h2>
+    <form action="{% url 'password-create' %}" method="post">
+        {% csrf_token %}
+        {{ create_password_form }}
+        <input type="hidden" name="wallet_id" value="{{ wallet_id }}">
+        <button type="submit">Create</button>
+    </form>
+    {% for pwd in passwords %}
+        {{ pwd.name }} -> {{ pwd.url }} -> {{ pwd.passw }}
+    {% endfor %}
+
+{% endblock %}

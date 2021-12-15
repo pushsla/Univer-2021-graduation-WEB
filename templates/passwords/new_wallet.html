@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}New Wallet{% endblock %}
+
+{% block content %}
+<h2>Create New Wallet</h2>
+<form action="{%  url 'wallet-create' %}" method="post">
+  {% csrf_token %}
+  {{ form }}
+  <button type="submit">Create</button>
+</form>
+{% endblock %}
